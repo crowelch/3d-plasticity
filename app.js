@@ -30,6 +30,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var bidController = require ('./controllers/bids');
 
 /**
  * API keys and Passport configuration.
@@ -176,6 +177,8 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
+
+app.get('/bids', bidController.bid);
 
 /**
  * OAuth authorization routes. (API examples)
