@@ -9,6 +9,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="/api">API Examples</a></li>
         <li><a href="/contact">Contact</a></li>
+        <li><a href="/viewer">Viewer</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{#unless user}}
@@ -24,7 +25,7 @@
             {{/if}}
             {{#if user.profile.name}}
               {{user.profile.name}}&nbsp;
-            {{else}} 
+            {{else}}
               {{#if user.email}}
                 {{user.email}}&nbsp;
               {{else}}

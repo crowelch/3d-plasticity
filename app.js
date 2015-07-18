@@ -27,6 +27,7 @@ var connectAssets = require('connect-assets');
  * Controllers (route handlers).
  */
 var homeController = require('./controllers/home');
+var viewerController = require('./controllers/viewer')
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
@@ -100,6 +101,7 @@ var csrfProtection = csrf({cookie: true});
  * Primary app routes.
  */
 app.get('/', csrfProtection, homeController.index);
+app.get('/viewer', csrfProtection, viewerController.index);
 app.get('/login', csrfProtection, userController.getLogin);
 app.post('/login', csrfProtection, userController.postLogin);
 app.get('/logout', csrfProtection, userController.logout);
