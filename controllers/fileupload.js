@@ -1,10 +1,14 @@
 var AWS = require('aws-sdk');
 var fs = require('fs');
 
-AWS.config.loadFromPath('../config/AWSConfig.json');
+AWS.config.loadFromPath('./config/AWSConfig.json');
 AWS.config.update({region: "", endpoint : "https://s3.amazonaws.com" });
-uploadFileToAWS("C:\\Github\\Test.txt", "kfechter-testFile.txt");
-getFileFromAws("kfechter-testFile.txt", "C:\\Github\\TestDownload.txt");
+
+exports.upload = function (req, res) {
+    res.render('upload', {
+        title: 'Upload'
+    });
+};
 
 
 function uploadFileToAWS(filepath, filename) {
