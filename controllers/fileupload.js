@@ -30,9 +30,10 @@ function uploadFileToAWS(filepath, filename, callback) {
         if (err) { console.log(err); return callback(err);}
         var s3obj = new AWS.S3();
         var now = Date.now();
-        var params = { Bucket: '3d-plasticity', Key: now + "-" + filename, ACL: 'public-read', Body: data, Expires: 3600 }
+        var completedFile = now + "-" + filename
+        var params = { Bucket: '3d-plasticity', Key: completedFile , ACL: 'public-read', Body: data, Expires: 3600 }
         s3obj.putObject(params, function (resp) {
-            callback(null, AWSUrl + filename);
+            callback(null, AWSUrl + completedFile);
         });
     });
 }
