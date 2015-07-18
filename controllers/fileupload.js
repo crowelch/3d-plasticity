@@ -14,8 +14,7 @@ exports.upload = function (req, res) {
 };
 
 exports.postUpload = function (req, res, next) {
-
-    uploadFileToAWS(req.body.filename, 'TestFileA1A.txt', function (err, filename) {
+    uploadFileToAWS(req.files.filename.path, req.files.filename.originalname, function (err, filename) {
         if(err){
             return console.log(err);
         }
@@ -30,7 +29,8 @@ function uploadFileToAWS(filepath, filename, callback) {
     var body = fs.readFile(filepath, function (err, data) {
         if (err) { console.log(err); return callback(err);}
         var s3obj = new AWS.S3();
-        var params = { Bucket: '3d-plasticity', Key: filename, ACL: 'public-read', Body: data, Expires: 3600 }
+        var now = Date.now();
+        var params = { Bucket: '3d-plasticity', Key: now + "-" + filename, ACL: 'public-read', Body: data, Expires: 3600 }
         s3obj.putObject(params, function (resp) {
             callback(null, AWSUrl + filename);
         });

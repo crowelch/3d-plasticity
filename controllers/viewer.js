@@ -4,9 +4,10 @@ var exphbs = require('express-handlebars');
  * GET /
  * Home page.
  */
-exports.viewer = function(req, res) {
+exports.viewer = function (req, res) {
+    console.log(req);
     res.render('viewer', {
         title: 'viewer',
-    stlFile: path
+        stlFile: req.session.filename
 });
 };
