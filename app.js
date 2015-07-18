@@ -31,6 +31,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var uploadController = require('./controllers/fileupload');
+var viewerController = require('./controllers/viewer');
 
 /**
  * API keys and Passport configuration.
@@ -121,6 +122,7 @@ app.get('/account/unlink/:provider', csrfProtection, passportConf.isAuthenticate
 app.get('/upload', uploadController.upload);
 app.post('/upload/postUpload', uploadController.postUpload);
 
+app.get('/viewer', viewerController.viewer);
 /**
  * API examples routes.
  */
