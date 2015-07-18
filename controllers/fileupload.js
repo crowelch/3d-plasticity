@@ -19,6 +19,7 @@ exports.postUpload = function (req, res, next) {
             return console.log(err);
         }
         req.session.filename = filename;
+        req.session.stlfile = "./uploads/" + req.files.filename.name;
         res.redirect('/viewer');
     });
 
@@ -31,6 +32,7 @@ function uploadFileToAWS(filepath, filename, callback) {
         var s3obj = new AWS.S3();
         var now = Date.now();
         var completedFile = now + "-" + filename
+        console.log(completedFile);
         var params = { Bucket: '3d-plasticity', Key: completedFile , ACL: 'public-read', Body: data, Expires: 3600 }
         s3obj.putObject(params, function (resp) {
             callback(null, AWSUrl + completedFile);

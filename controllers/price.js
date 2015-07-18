@@ -6,7 +6,7 @@ exports.price = function(filename, cb) {
 		var grams = stl.weight;
 		console.log(grams);
 		price = getPrice(grams, function(price) {
-			cb(price);
+			 cb(price);
 		});
 	}, 10);
 };

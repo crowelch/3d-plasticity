@@ -5,9 +5,8 @@ var exphbs = require('express-handlebars');
  * Home page.
  */
 exports.viewer = function (req, res) {
-    console.log(req);
-    res.render('viewer', {
-        title: 'viewer',
-        stlFile: req.session.filename
-});
+        res.render('viewer', {
+            title: 'viewer',
+            stlFile: req.session.filename,
+        });
 };
