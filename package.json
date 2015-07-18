@@ -12,6 +12,11 @@
     "express": "~4.11.1",
     "hbs": "~2.8.0",
     "morgan": "~1.5.1",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "node-stl": "0.0.1",
+    "3d-print-price-calculator": "0.0.1",
+    "stl-obj-viewer": "0.0.1",
+    "firebase": "~2.2.7",
+    "geofire": "~3.2.2"
   }
 }
