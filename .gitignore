@@ -14,6 +14,7 @@ results
 tmp
 
 npm-debug.log
+config/AWSConfig.json
 node_modules
 .idea
 *.iml
