@@ -6,12 +6,14 @@ var stripe = require('stripe')(secrets.stripe.secretKey);
  * Stripe API example.
  */
 exports.checkout = function(req, res) {
+  console.log(req.body);
+  // console.log(req.body.price.replace('.', '').replace('$', ''));
   res.render('checkout/checkout', {
     title: 'Checkout',
     publishableKey: secrets.stripe.publishableKey,
-    amount: 250,//req.amount,
-    name: 'ken',//req.name,
-    price: '$2.50'//req.price
+    amount: req.body.price.replace('.', '').replace('$', ''),
+    username: req.body.username,
+    price: req.body.price
   });
 };
 
@@ -30,7 +32,7 @@ exports.postStripe = function(req, res, next) {
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       req.flash('errors', { msg: 'Your card has been declined.' });
-      res.redirect('/checkout');
+      res.redirect('checkout');
     }
     console.log(charge);
     req.flash('success', { msg: 'Your card has been charged successfully.' });

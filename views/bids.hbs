@@ -2,18 +2,37 @@
 <div style="padding-left:70px;">
 	{{#each users as |user|}}
 </br>
-		<h3><ui>{{user.name}}</ui></h3>
-    <ul>
-		<h4><li>{{user.location}}</li>
-		<li>{{user.printer}}</li>
+<h3>
+	<ui>
+		{{user.name}}
+	</ui>
+</h3>
+<ul>
+	<h4>
+		<li>
+			{{user.location}}
+		</li>
+		<li>
+			{{user.printer}}
+		</li>
 		{{#if user.printer.printerResolutions}}
 			<ul>
 				{{#each user.printer.printerResolutions as |resolution|}}
-					<li>{{resolution}}</li>
+					<li>
+						{{resolution}}
+					</li>
 				{{/each}}
-			</ul
+			</ul>
 		{{/if}}
-		<li>{{user.price}}</li>
-		</ul></h4>
+				<li>{{user.price}}</li>
+			</ul>
+	</h4>
+	<form action="/checkout" method="post">
+		<input type="hidden" name="username" value="{{user.name}}">
+		<input type="hidden" name="location" value="{{user.location}}">
+		<input type="hidden" name="printer" value="{{user.printer}}">
+		<input type="hidden" name="price" value="{{user.price}}">
+		<input type="submit" class="btn btn-danger">
+	</form>
 	{{/each}}
 </div>
