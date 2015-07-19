@@ -7,11 +7,20 @@ var stripe = require('stripe')(secrets.stripe.secretKey);
  */
 exports.checkout = function(req, res) {
   console.log(req.body);
+  var amount = '';
+  var url = 'checkout/checkout';
+  if(req.body.price) {
+    console.log('good');
+    amount = req.body.price.replace('.', '').replace('$', '');
+  } else {
+    console.log('bad');
+    url = 'checkout/postCheckout';
+  }
   // console.log(req.body.price.replace('.', '').replace('$', ''));
-  res.render('checkout/checkout', {
+  res.render(url, {
     title: 'Checkout',
     publishableKey: secrets.stripe.publishableKey,
-    amount: req.body.price.replace('.', '').replace('$', ''),
+    amount: amount,
     username: req.body.username,
     price: req.body.price
   });
@@ -32,13 +41,12 @@ exports.postStripe = function(req, res, next) {
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       req.flash('errors', { msg: 'Your card has been declined.' });
-      res.redirect('checkout');
+      res.redirect('checkout/postCheckout');
     }
     console.log(charge);
     req.flash('success', { msg: 'Your card has been charged successfully.' });
     res.render('checkout/postCheckout', {
-      charge: charge,
-      hello: 'hello'
+      charge: charge
     });
   });
 };

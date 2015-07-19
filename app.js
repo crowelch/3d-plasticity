@@ -133,7 +133,7 @@ app.post('/home/postUpload', homeController.postUpload);
 app.get('/upload', uploadController.upload);
 app.get('/viewer', viewerController.viewer);
 app.post('/checkout', checkoutController.checkout);
-app.post('/checkout/postCheckout', checkoutController.postStripe);
+app.get('/checkout/postCheckout', checkoutController.postStripe);
 app.get('/bids', bidController.bid);
 app.post ('/bids', viewerController.bidPost);
 app.post ('/bids/checkout', bidController.checkout);
