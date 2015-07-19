@@ -48,14 +48,14 @@ function constructFilename(user, filename, cb) {
 	if (user) {
 		var email = user.email;
 		var truncatedEmail = email.split("@");
-		completedFileName = truncatedEmail[0] + "-" + now + "-" + filename;
+		completedFileName = truncatedEmail[0] + "-" + Date.now() + "-" + filename;
 		User.findById(user.id, function (err, user) {
 			if (err) {
 				return console.log(err);
 			}
 			var uploadedFile = new File({
 				fileName: filename,
-				s3Url: AWSUrl + completedFile
+				s3Url: AWSUrl + completedFileName
 			});
 			user.accountHistory.uploadedFiles.push(uploadedFile);
 			user.save(function (err) {
