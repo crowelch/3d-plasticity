@@ -17,7 +17,17 @@
   <h2>Order History</h3>
 </div>
 
-{{#if user.history.orderedPrints}}
+{{#if user.accountHistory.orderedPrints}}
+
+	{{#each user.accountHistory.orderedPrints as |orderedPrint|}}
+		<ul>
+		<li>Ordered On: {{orderedPrint.timeStamp}}</li>
+		<li>Ordered From: {{orderedPrint.seller}}</li>
+		<li>Item Ordered: {{orderedPrint.fileName}}</li>
+		<li>Item Cost : {{orderedPrint.price}}</li>
+		<li>Your Rating : {{orderedPrint.rating}}</li>
+		</ul>
+	{{/each}}
 {{else}}
 <h4>You haven't ordered anything yet.</h2>
 {{/if}}

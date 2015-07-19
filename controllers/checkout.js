@@ -1,28 +1,27 @@
 var secrets = require('../config/secrets');
 var stripe = require('stripe')(secrets.stripe.secretKey);
+var Order = require('../models/Order');
+var User = require('../models/User');
 
 /**
  * GET /checkout
  * Stripe API example.
  */
 exports.checkout = function(req, res) {
-  console.log(req.body);
   var amount = '';
   var url = 'checkout/checkout';
   if(req.body.price) {
-    console.log('good');
     amount = req.body.price.replace('.', '').replace('$', '');
   } else {
-    console.log('bad');
     url = 'checkout/postCheckout';
   }
-  // console.log(req.body.price.replace('.', '').replace('$', ''));
   res.render(url, {
     title: 'Checkout',
     publishableKey: secrets.stripe.publishableKey,
     amount: amount,
     username: req.body.username,
-    price: req.body.price
+    price: req.body.price,
+    printedFileName: '3d_thingy.stl'
   });
 };
 
@@ -33,6 +32,27 @@ exports.checkout = function(req, res) {
 exports.postStripe = function(req, res, next) {
   var stripeToken = req.body.stripeToken;
   var stripeEmail = req.body.stripeEmail;
+  var order = new Order({
+      timeStamp: Date.now,
+      fileName: req.body.fileName,
+      seller: req.body.sellerName,
+      price: req.body.price + " (in USD)",
+      rating : 0
+  });
+  if (req.user) {
+      User.findById(req.user.id, function (err, user) {
+          if (err) {
+              return console.log(err);
+          }
+          user.accountHistory.orderedPrints.push(order);
+          user.save(function (err) {
+              if (err) {
+                  console.log(err);
+              }
+          });
+      });
+  }
+
   stripe.charges.create({
     amount: req.body.amount,
     currency: 'usd',
@@ -43,7 +63,6 @@ exports.postStripe = function(req, res, next) {
       req.flash('errors', { msg: 'Your card has been declined.' });
       res.redirect('checkout/postCheckout');
     }
-    console.log(charge);
     req.flash('success', { msg: 'Your card has been charged successfully.' });
     res.render('checkout/postCheckout', {
       charge: charge
