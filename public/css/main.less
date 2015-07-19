@@ -29,8 +29,12 @@ footer {
   }
 }
 
-.ext-box { display: table; }
-.int-box { display: table-cell; vertical-align: middle; }
+.vcontainer {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
 
 // Navbar
 // -------------------------
