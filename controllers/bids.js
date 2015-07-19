@@ -10,7 +10,7 @@ exports.bid = function(req, res) {
 
 		var users = JSON.parse(usersBuffer);
 
-		getPrice('public/file.stl', function(price) {
+		getPrice('req.filename', function(price) {
 			_.each(users, function(user) {
 				user.price = '$' + (user.multiplier * price).toFixed(2);
 			});

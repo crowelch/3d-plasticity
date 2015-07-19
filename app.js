@@ -37,6 +37,7 @@ var contactController = require('./controllers/contact');
 var bidController = require ('./controllers/bids');
 var uploadController = require('./controllers/fileupload');
 var viewerController = require('./controllers/viewer');
+var checkoutController = require('./controllers/checkout');
 
 /**
  * API keys and Passport configuration.
@@ -125,10 +126,16 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', csrfProtection, passportConf.isAuthenticated, userController.getOauthUnlink);
 
-//app.get('/upload', uploadController.upload);
-app.post('/home/postUpload', homeController.postUpload);
+/*
+* AngelHacks routes
+*/
 
+app.post('/home/postUpload', homeController.postUpload);
+app.get('/upload', uploadController.upload);
 app.get('/viewer', viewerController.viewer);
+app.get('/checkout', checkoutController.checkout);
+app.post('/checkout', checkoutController.postStripe);
+
 /**
  * API examples routes.
  */

@@ -683,9 +683,9 @@ exports.getPayPalCancel = function(req, res) {
  */
 exports.getLob = function(req, res, next) {
   lob.routes.list({
-    zip_codes: ['10007'] 
+    zip_codes: ['10007']
   }, function(err, routes) {
-    if(err) return next(err); 
+    if(err) return next(err);
     res.render('api/lob', {
       title: 'Lob API',
       routes: routes.data[0].routes
