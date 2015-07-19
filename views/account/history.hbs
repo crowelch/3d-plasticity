@@ -1,0 +1,124 @@
+
+<div class="page-header">
+  <h3>Profile Information</h3>
+</div>
+<form action="/account/profile" method="POST" class="form-horizontal">
+  <input type="hidden" name="_csrf" value="{{_csrf}}"/>
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-4">
+      <input type="email" name="email" id="email" value="{{user.email}}" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-4">
+      <input type="text" name="name" id="name" value="{{user.profile.name}}" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="location" class="col-sm-2 control-label">Location</label>
+    <div class="col-sm-4">
+      <input type="text" name="location" id="location" value="{{user.profile.location}}" class="form-control"/>
+    </div>
+  </div>
+{{#if isSeller}}
+<div class="form-group">
+    <div class="form-group">
+    <label for="printer" class="col-sm-2 control-label">Printer Model</label>
+    <div class="col-sm-4">
+      <input type="text" name="printerModel" id="printerModel" value="{{user.printer.printerModel}}" class="form-control"/>
+    </div>
+  </div>
+  
+
+   <div class="form-group">
+    <label for="printerResolutions" class="col-sm-2 control-label">Highest Resolution Supported</label>
+    <div class="col-sm-4">
+	<input type="radio" name="printerResolution" value="0.1" {{{setChecked 0.1 printerResolution}}}> 0.1mm
+	<br>
+	<input type="radio" name="printerResolution" value="0.2" {{{setChecked 0.2 printerResolution}}}> 0.2mm
+	<br>
+	<input type="radio" name="printerResolution" value="0.3" {{{setChecked 0.3 printerResolution}}}> 0.3mm
+	<br>
+	<input type="radio" name="printerResolution" value="0.4" {{{setChecked 0.4 printerResolution}}}> 0.4mm
+	<br>
+	<input type="radio" name="printerResolution" value="0.5" {{{setChecked 0.5 printerResolution}}}> 0.5mm
+    </div>
+  </div>
+
+
+   <div class="form-group">
+    <label for="examplePrints" class="col-sm-2 control-label">Example Prints</label>
+    <div class="col-sm-4">
+      <input type="text" name="examplePrints" id="examplePrints" value="{{user.printer.examplePrints}}" class="form-control"/>
+    </div>
+  </div>
+
+<div class="form-group">
+    <label for="printMaterials" class="col-sm-2 control-label">Print Materials</label>
+    <div class="col-sm-4">
+        <input type="checkbox" {{#if user.printer.supportsPLA}}checked{{/if}} name="supportsPLA"> PLA
+	<br>
+	<input type="checkbox" {{#if user.printer.supportsABS}}checked{{/if}} name="supportsABS"> ABS
+    </div>
+  </div>
+
+<div class="form-group">
+    <label for="userRating" class="col-sm-2 control-label">Rating</label>
+    <div class="col-sm-4">
+      <h2 id="userRating">{{user.printer.rating}}</h2>
+    </div>
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label for="gravatar" class="col-sm-2 control-label">Gravatar</label>
+    <div class="col-sm-4"><img src="{{getGravatarURL user 100}}" width="100" height="100" class="profile"/></div>
+</div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type="submit" class="btn btn btn-primary"><span class="fa fa-pencil"></span>Update Profile</button>
+    </div>
+  </div>
+</form>
+<div class="page-header">
+  <h3>Change Password</h3>
+</div>
+<form action="/account/password" method="POST" class="form-horizontal">
+  <input type="hidden" name="_csrf" value="{{_csrf}}"/>
+  <div class="form-group">
+    <label for="password" class="col-sm-3 control-label">New Password</label>
+    <div class="col-sm-4">
+      <input type="password" name="password" id="password" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+    <div class="col-sm-4">
+      <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button type="submit" class="btn btn btn-primary"><span class="fa fa-lock"></span>Change Password</button>
+    </div>
+  </div>
+</form>
+<div class="page-header">
+  <h3>Delete Account</h3>
+</div>
+<p>You can delete your account, but keep in mind this action is irreversible.</p>
+<form action="/account/delete" method="POST">
+  <input type="hidden" name="_csrf" value="{{_csrf}}"/>
+  <button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span>Delete my account</button>
+</form>
+
+<script type="text/javascript">
+Handlebars.registerHelper("setChecked", function (value, currentValue) {
+    if (value == currentValue) {
+        return "checked"
+    } else {
+        return "";
+    }
+});
+</script>

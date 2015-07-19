@@ -11,6 +11,11 @@ var userSchema = new mongoose.Schema({
     name: { type: String, default: '' },
     location: { type: String, default: '' }
   },
+
+  accountHistory : {
+      uploadedFiles: { type: Array, default: [] },
+      orderedPrints: { type: Array, default:[] }
+  },
    
   printer:{
       printerModel: { type: String, default: '' },

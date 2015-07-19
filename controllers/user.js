@@ -118,6 +118,14 @@ exports.getAccount = function (req, res) {
   });
 };
 
+exports.getHistory = function (req, res) {
+    res.render('account/history', {
+        title: 'User History',
+        isSeller: req.user.isSeller,
+        _csrf: req.csrfToken()
+    });
+}
+
 /**
  * POST /account/profile
  * Update profile information.
