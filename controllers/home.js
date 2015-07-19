@@ -35,7 +35,6 @@ function uploadFileToAWS(filepath, filename, user,callback) {
         var now = Date.now();
         var completedFile;
         if (user) {
-            console.log(user);
             var email = user.email;
             var truncatedEmail = email.split("@");
             completedFile = truncatedEmail[0] + "-" + now + "-" + filename;
