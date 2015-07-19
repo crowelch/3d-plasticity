@@ -12,7 +12,6 @@ var secrets = require('../config/secrets');
  */
 exports.getLogin = function(req, res) {
   if (req.user) return res.redirect('/');
-  console.log('csrfToken = ' + req.csrfToken());
   res.render('account/login', {
     title: 'Login',
     _csrf: req.csrfToken()
@@ -111,10 +110,10 @@ exports.postSignup = function(req, res, next) {
  * Profile page.
  */
 exports.getAccount = function (req, res) {
-    console.log(req);
     res.render('account/profile', {
         title: 'Account Management',
-        isSeller : req.user.isSeller,
+        isSeller: req.user.isSeller,
+        printerResolution : req.user.printer.printerHighestResolution || '',
     _csrf: req.csrfToken()
   });
 };
@@ -129,6 +128,19 @@ exports.postUpdateProfile = function(req, res, next) {
     user.email = req.body.email || '';
     user.profile.name = req.body.name || '';
     user.profile.location = req.body.location || '';
+
+    if (user.isSeller) {
+        // Update user seller things
+        user.printer.printerModel = req.body.printerModel || '';
+        user.printer.examplePrints = req.body.examplePrints || '';
+        user.printer.printerHighestResolution = req.body.printerResolution || '';
+        console.log(req.body.supportsABS);
+        console.log(req.body.supportsPLA);
+        user.printer.supportsABS = req.body.supportsABS || false;
+        user.printer.supportsPLA = req.body.supportsPLA || false;
+    }
+
+
 
     user.save(function(err) {
       if (err) return next(err);
