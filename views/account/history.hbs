@@ -1,9 +1,13 @@
-
 <div class="page-header">
   <h2>My Files</h3>
 </div>
 
-{{#if user.history.uploadedFiles}}
+{{#if user.accountHistory.uploadedFiles}}
+ <ul>
+	{{#each user.accountHistory.uploadedFiles as |uploadedFile|}}
+		<li><a href="{{uploadedFile.s3Url}}">{{uploadedFile.fileName}}</a></li>
+	{{/each}}
+</ul>
 {{else}}
 <h4>You haven't uploaded any files</h2>
 {{/if}}
