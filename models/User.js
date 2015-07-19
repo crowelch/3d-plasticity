@@ -3,25 +3,22 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
-  email: { type: String, unique: true, lowercase: true },
-  password: String,
-
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
-  linkedin: String,
-  tokens: Array,
+    email: { type: String, unique: true, lowercase: true },
+    password: String,
+    isSeller: { type: Boolean, default: false },
 
   profile: {
     name: { type: String, default: '' },
-    gender: { type: String, default: '' },
-    location: { type: String, default: '' },
-    website: { type: String, default: '' },
-    picture: { type: String, default: '' }
+    location: { type: String, default: '' }
   },
-
+   
+  printer:{
+      printerModel: { type: String, default: '' },
+      printerResolutions: { type: Array, default: [] },
+      examplePrints: { type: String, default: '' },
+      materials: {type: String, default : ''},
+      rating: {type: Number, default: 0}
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });

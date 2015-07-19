@@ -84,10 +84,11 @@ exports.postSignup = function(req, res, next) {
     req.flash('errors', errors);
     return res.redirect('/signup');
   }
-
+  
   var user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    isSeller: req.body.isSeller
   });
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {
@@ -109,9 +110,11 @@ exports.postSignup = function(req, res, next) {
  * GET /account
  * Profile page.
  */
-exports.getAccount = function(req, res) {
-  res.render('account/profile', {
-    title: 'Account Management',
+exports.getAccount = function (req, res) {
+    console.log(req);
+    res.render('account/profile', {
+        title: 'Account Management',
+        isSeller : req.user.isSeller,
     _csrf: req.csrfToken()
   });
 };
@@ -125,9 +128,7 @@ exports.postUpdateProfile = function(req, res, next) {
     if (err) return next(err);
     user.email = req.body.email || '';
     user.profile.name = req.body.name || '';
-    user.profile.gender = req.body.gender || '';
     user.profile.location = req.body.location || '';
-    user.profile.website = req.body.website || '';
 
     user.save(function(err) {
       if (err) return next(err);
