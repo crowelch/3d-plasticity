@@ -12,6 +12,5 @@ exports.viewer = function (req, res) {
 };
 
 exports.bidPost = function (req, res) {
-      req.session.filename = objthingy;
       res.redirect('/bids');
 }
