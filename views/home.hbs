@@ -1,26 +1,18 @@
 
-<h1>Hackathon Starter</h1>
-<p class="lead">A boilerplate for Node.js web applications.</p>
-<hr/>
-<div class="row">
-  <div class="col-sm-6">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-  </div>
-  <div class="col-sm-6">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-  </div>
-  <div class="col-sm-6">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-  </div>
-  <div class="col-sm-6">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-  </div>
+<div class="fullscreen-bg">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+        <source src="vimeoprint.mp4" type="video/mp4">
+    </video>
 </div>
+</div>
+<div style="display:flex;justify-content:center;align-items:center;padding-top: 125px">
+    <h1>What would you like to print today?</h1>
+</div>
+<div style="display:flex;justify-content:center;align-items:center;padding-top: 25px;padding-left:70px;">
+      <form action="/home/postUpload" method="post" enctype="multipart/form-data">
+        <h4><input type="file" name="filename" accept=".stl"></h4>
+        <div style="display:flex;justify-content:center;align-items:center;padding-top: 25px;padding-right:85px;">
+          <input type="submit"class="btn btn-success">
+        </div>
+      </form>
+  </div>
