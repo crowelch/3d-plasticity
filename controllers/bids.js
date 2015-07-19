@@ -16,9 +16,9 @@ exports.bid = function(req, res) {
 			_.each(users, function(user) {
 				user.price = '$' + (user.multiplier * price).toFixed(2);
 			});
-			console.log(users);
 			var newUsers = {
-				users: users
+				users: users,
+				filename: filename
 			}
 
 			res.render('bids', newUsers);
