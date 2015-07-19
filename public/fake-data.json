@@ -1,0 +1,51 @@
+[{
+  "userId": 0,
+  "name": "Peter Parker",
+  "location": "45219",
+  "printer": "Makerbot Replicator 2",
+  "sample": "",
+  "quality": "",
+  "materials": "ABS, PLA",
+  "multiplier": 1.2
+},
+{
+  "userId": 1,
+  "name": "Lois Lane",
+  "location": "41042",
+  "printer": "RepRap Prusa i3",
+  "sample": "",
+  "quality": "",
+  "materials": "ABS",
+  "multiplier": 1.63
+},
+{
+  "userId": 2,
+  "name": "Bruce Banner",
+  "location": "45052",
+  "printer": "Solidoodle 4",
+  "sample": "",
+  "quality": "",
+  "materials": "PLA",
+  "multiplier": 1.05
+},
+{
+  "userId": 3,
+  "name": "Selina Kyle",
+  "location": "45202",
+  "printer": "Printrbot",
+  "sample": "",
+  "quality": "",
+  "materials": "",
+  "multiplier": 1.7
+},
+{
+  "userId": 4,
+  "name": "Clark Kent",
+  "location": "41011",
+  "printer": "MakerBot 2x",
+  "sample": "",
+  "quality": "",
+  "materials": "",
+  "multiplier": 1
+}]
+
