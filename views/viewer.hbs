@@ -1,5 +1,6 @@
 <h1>Model Viewer</h1>
 <body>
+	<div style="display:flex;justify-content:center;align-items:center;">
         <canvas id="cv" width=640 height=480>
         It seems you are using an outdated browser that does not support canvas :-(
         </canvas>
@@ -8,14 +9,18 @@
         <script type="text/javascript">
             var viewer = new JSC3D.Viewer(document.getElementById('cv'));
             viewer.setParameter('SceneUrl',         '{{stlFile}}');
-            viewer.setParameter('ModelColor',       '#CAA618');
-            viewer.setParameter('BackgroundColor1', '#E5D7BA');
-            viewer.setParameter('BackgroundColor2', '#383840');
+            viewer.setParameter('ModelColor',       '#FF0000');
+            viewer.setParameter('BackgroundColor1', '#ffffff');
+            viewer.setParameter('BackgroundColor2', '#ffffff');
             viewer.setParameter('RenderMode',       'flat');
             viewer.init();
             viewer.update();
         </script>
+</div>
 
-<form action="/bids" method="post" enctype="multipart/form-data">
-<input type="submit"class="btn btn-success">
+<div style="display:flex;justify-content:flex-end;align-items:center;">
+  <form action="/bids" method="post" enctype="multipart/form-data">
+  <input type="submit"class="btn btn-success">
+</div>
+
     </body>
