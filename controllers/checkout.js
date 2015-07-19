@@ -2,11 +2,11 @@ var secrets = require('../config/secrets');
 var stripe = require('stripe')(secrets.stripe.secretKey);
 
 /**
- * GET /api/stripe
+ * GET /checkout
  * Stripe API example.
  */
 exports.checkout = function(req, res) {
-  res.render('checkout', {
+  res.render('checkout/checkout', {
     title: 'Checkout',
     publishableKey: secrets.stripe.publishableKey,
     amount: 250,//req.amount,
@@ -16,7 +16,7 @@ exports.checkout = function(req, res) {
 };
 
 /**
- * POST /api/stripe
+ * POST /checkout
  * Make a payment.
  */
 exports.postStripe = function(req, res, next) {
@@ -30,9 +30,13 @@ exports.postStripe = function(req, res, next) {
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       req.flash('errors', { msg: 'Your card has been declined.' });
-      res.redirect('/api/stripe');
+      res.redirect('/checkout');
     }
+    console.log(charge);
     req.flash('success', { msg: 'Your card has been charged successfully.' });
-    res.redirect('/api/stripe');
+    res.render('checkout/postCheckout', {
+      charge: charge,
+      hello: 'hello'
+    });
   });
 };

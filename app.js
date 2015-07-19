@@ -132,6 +132,7 @@ app.get('/upload', uploadController.upload);
 app.post('/upload/postUpload', uploadController.postUpload);
 app.get('/viewer', viewerController.viewer);
 app.get('/checkout', checkoutController.checkout);
+app.post('/checkout', checkoutController.postStripe);
 
 /**
  * API examples routes.
