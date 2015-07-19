@@ -5,7 +5,8 @@
   "printer": "Makerbot Replicator 2",
   "sample": "",
   "quality": "",
-  "materials": "ABS, PLA"
+  "materials": "ABS, PLA",
+  "multiplier": 1.2
 },
 {
   "userId": 1,
@@ -14,7 +15,8 @@
   "printer": "RepRap Prusa i3",
   "sample": "",
   "quality": "",
-  "materials": "ABS"
+  "materials": "ABS",
+  "multiplier": 1.63
 },
 {
   "userId": 2,
@@ -23,7 +25,8 @@
   "printer": "Solidoodle 4",
   "sample": "",
   "quality": "",
-  "materials": "PLA"
+  "materials": "PLA",
+  "multiplier": 1.05
 },
 {
   "userId": 3,
@@ -32,7 +35,8 @@
   "printer": "Printrbot",
   "sample": "",
   "quality": "",
-  "materials": ""
+  "materials": "",
+  "multiplier": 1.7
 },
 {
   "userId": 4,
@@ -41,6 +45,7 @@
   "printer": "MakerBot 2x",
   "sample": "",
   "quality": "",
-  "materials": ""
+  "materials": "",
+  "multiplier": 1
 }]
 

@@ -1,7 +1,9 @@
-<ul>
-	{{#each model.users as |user|}}
-		<li>
-			{{}}
-		</li>
+ <ul>
+	{{#each users as |user|}}
+		<li>{{user.name}}</li>
+		<li>{{user.location}}</li>
+		<li>{{user.printer}}</li>
+		<li>{{user.price}}</li>
+		<br>
 	{{/each}}
 </ul>
