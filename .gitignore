@@ -14,7 +14,7 @@ results
 tmp
 
 npm-debug.log
-config/AWSConfig.json
+config
 uploads
 *.stl
 node_modules
