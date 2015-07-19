@@ -1,7 +1,7 @@
-
-
 var AWS = require('aws-sdk');
 var fs = require('fs');
+var User = require('../models/User');
+var File = require('../models/File');
 
 AWS.config.loadFromPath('./config/AWSConfig.json');
 AWS.config.update({ region: "", endpoint: "https://s3.amazonaws.com" });
@@ -16,7 +16,7 @@ exports.upload = function (req, res) {
 };
 
 exports.postUpload = function (req, res, next) {
-    uploadFileToAWS(req.files.filename.path, req.files.filename.originalname, function (err, filename) {
+    uploadFileToAWS(req.files.filename.path, req.files.filename.originalname, req.user, function (err, filename) {
         if(err){
             return console.log(err);
         }
@@ -27,13 +27,33 @@ exports.postUpload = function (req, res, next) {
 
 }
 
-function uploadFileToAWS(filepath, filename, callback) {
+function uploadFileToAWS(filepath, filename, user,callback) {
 
     var body = fs.readFile(filepath, function (err, data) {
         if (err) { console.log(err); return callback(err);}
         var s3obj = new AWS.S3();
         var now = Date.now();
-        var completedFile = now + "-" + filename
+        var completedFile;
+        if (user) {
+            var email = user.email;
+            var truncatedEmail = email.split("@");
+            completedFile = truncatedEmail[0] + "-" + now + "-" + filename;
+            User.findById(user.id, function (err, user) {
+                if (err) {
+                    return console.log(err);
+                }
+                var uploadedFile = new File({
+                    fileName: filename,
+                    s3Url: AWSUrl + completedFile
+                });
+                user.accountHistory.uploadedFiles.push(uploadedFile);
+                user.save(function (err) {
+                    return console.log(err);
+                });
+            });
+        }else {
+            completedFile = "-" + now + "-" + filename;
+        }
         console.log(completedFile);
         var params = { Bucket: '3d-plasticity', Key: completedFile , ACL: 'public-read', Body: data, Expires: 3600 }
         s3obj.putObject(params, function (resp) {
