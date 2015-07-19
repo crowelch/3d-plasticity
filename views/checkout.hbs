@@ -1,0 +1,16 @@
+<div class="page-header">
+	<h2>Checkout</h2>
+	<br>
+	<form action="" method="POST">
+		<input type="hidden" name="_csrf">
+		<script
+			src="https://checkout.stripe.com/checkout.js"
+			class="stripe-button"
+			data-key="{{publishableKey}}"
+			data-amount="{{amount}}"
+			data-image="http://imgur.com/h7IVhjG.jpg"
+			data-name="{{username}}"
+			data-description="3D Printed Thingy ({{price}})">
+		</script>
+	</form>
+</div>

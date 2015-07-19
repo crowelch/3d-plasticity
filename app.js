@@ -125,7 +125,6 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', csrfProtection, passportConf.isAuthenticated, userController.getOauthUnlink);
-app.post ('/bids', viewerController.bidPost);
 /*
 * AngelHacks routes
 */
@@ -133,8 +132,11 @@ app.post ('/bids', viewerController.bidPost);
 app.post('/home/postUpload', homeController.postUpload);
 app.get('/upload', uploadController.upload);
 app.get('/viewer', viewerController.viewer);
-app.get('/checkout', checkoutController.checkout);
-app.post('/checkout', checkoutController.postStripe);
+app.post('/checkout', checkoutController.checkout);
+app.post('/checkout/postCheckout', checkoutController.postStripe);
+app.get('/bids', bidController.bid);
+app.post ('/bids', viewerController.bidPost);
+app.post ('/bids/checkout', bidController.checkout);
 
 /**
  * API examples routes.
@@ -195,8 +197,6 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
-
-app.get('/bids', bidController.bid);
 
 /**
  * OAuth authorization routes. (API examples)

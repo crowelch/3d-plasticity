@@ -25,3 +25,7 @@ exports.bid = function(req, res) {
 		});
 	});
 };
+
+exports.checkout = function(req, res) {
+	console.log(req.body);
+};
