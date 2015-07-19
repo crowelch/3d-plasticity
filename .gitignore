@@ -14,6 +14,9 @@ results
 tmp
 
 npm-debug.log
+config/AWSConfig.json
+uploads
+*.stl
 node_modules
 .idea
 *.iml
