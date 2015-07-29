@@ -1,5 +1,12 @@
 #3D-Plasticity
-AngelHack Cincy 2015.
-Base on Handlebars Hackathon Starter
+AngelHack Cincinnati 2015
 
-[Handlebars Hackathon Starter](https://github.com/chriswendt/handlebars-hackathon-starter)
+3D-PlastiCity is a local marketplace for 3D printing.
+
+
+Chris Crowell
+Ken Addison
+Kenneth Fechter
+
+
+[Based on Handlebars Hackathon Starter](https://github.com/chriswendt/handlebars-hackathon-starter)
